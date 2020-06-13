@@ -1,4 +1,5 @@
 
+function makeResponsive() {
 
 var svgWidth = 960;
 var svgHeight = 500;
@@ -111,38 +112,53 @@ d3.csv("assets/data/data.csv").then(function(journalData) {
 
   // create tooltips, assign it a class
   // =======================================================
-  var toolTip = d3.tip().append("div")
-    .attr("class", "tooltip")
-    .style("background", "black")
-    .style("color", "red")
-    .offset([80, -60])
-    .html(function(d) {
+  var toolTip = d3.select()
+    .append("div")
+     .attr("class", "tooltip")
+     .style("background", "black")
+     .style("color", "red")
+     //.offset([80, -60])
+     .html(
+       function(d) {
         return (`${d.state}<hr>Poverty: ${d.poverty}%<br>Healthcare: ${d.healthcare}%`)
     // });
     .style("left", d3.event.pageX + "px")
     .style("top", d3.event.pageY + "px");
-
+  
   });
+
   
   //tooltip in the chart.
-  circlesGroup.call(toolTip);
+  //circlesGroup.call(toolTip);
+
+  var circlesGroup = chartGroup.selectAll("circle")
+      .data(journalData)
+      .enter()
+      .append("circle")
+      .attr("cx", d => xTimeScale(d.poverty))
+      .attr("cy", d => yLinearScale(d.healthcare))
+      .attr("r", "10")
+      .attr("fill", "gold")
+      .attr("stroke-width", "1")
+      .attr("stroke", "black");
+
     // Step 3: Add an onmouseout event to make the tooltip invisible
-  circlesGroup.on("mouseover", function(d, i) {
+  circlesGroup.on("mouseover", function(d) {
     toolTip.styles("display", "block");
     
-    d3.select(this)
+    /* d3.select(this)
       .transition()
       .duration(1000)
       .atr("r", 20)
-      .attr("fill","red"); 
+      .attr("fill","red");  */
   
  })
 
-  .on("click", function(data) {
+  .on("click", function(journalData) {
     toolTip.show(data, this);
 })
 
-  .on("mouseout",function(data) {
+  .on("mouseout",function(journalData) {
     d3.select(this)
     .transition()
     .duration(1000)
@@ -150,11 +166,16 @@ d3.csv("assets/data/data.csv").then(function(journalData) {
     .attr("fill","black")
     toolTip.style("display","none")
   }); 
+
+  
 });
 
+}
 
-// When the browser loads, makeResponsive() is called.
+// // When the browser loads, makeResponsive() is called.
 makeResponsive();
 
-// When the browser window is resized, responsify() is called.
+// // When the browser window is resized, responsify() is called.
 d3.select(window).on("resize", makeResponsive);
+
+
