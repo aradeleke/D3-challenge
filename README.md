@@ -1,5 +1,5 @@
-# D3-challenge
-# Data Journalism and D3
+
+# Data Journalism using D3 Techniques
 
 The editor wants to run a series of feature stories about the health risks facing particular demographics. Sifting through information from the U.S. Census Bureau and the Behavioral Risk Factor Surveillance System.
 
