@@ -1,7 +1,7 @@
 
 # Data Journalism using D3 Techniques
 
-![7-animated-scatter.gif](images/7-animated-scatter.gif)
+![4-scatter.jpg](images/4-scatter.jpg)
 
 The editor wants to run a series of feature stories about the health risks facing particular demographics. Sifting through information from the U.S. Census Bureau and the Behavioral Risk Factor Surveillance System.
 
