@@ -1,6 +1,8 @@
 
 # Data Journalism using D3 Techniques
 
+![7-animated-scatter.jpg](static/images/7-animated-scatter.jpg)
+
 The editor wants to run a series of feature stories about the health risks facing particular demographics. Sifting through information from the U.S. Census Bureau and the Behavioral Risk Factor Surveillance System.
 
 Use of D3 techniques to create an interactive a scatter plot that represents each state with circle elements.
